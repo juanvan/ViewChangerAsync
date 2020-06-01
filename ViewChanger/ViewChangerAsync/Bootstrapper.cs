@@ -18,19 +18,11 @@ namespace ViewChangerAsync
         protected override void Configure()
         {
 
-            //_container.Instance(ConfigureAutomapper());
-
-            //_container.Instance(_container)
-            //    .PerRequest<IProductEndpoint, ProductEndpoint>()
-            //    .PerRequest<ISalesEndpoint, SalesEndpoint>()
-            //    .PerRequest<IUserEndpoint, UserEndpoint>();
 
             _container
                 .Singleton<IWindowManager, WindowManager>()
                 .Singleton<IEventAggregator, EventAggregator>();
-            //.Singleton<ILoggedInUserModel, LoggedInUserModel>()
-            //.Singleton<IConfigHelper, ConfigHelper>();
-            //_container.CreateChildContainer();
+           
             GetType().Assembly.GetTypes()
                 .Where(type => type.IsClass)
                 .Where(type => type.Name.EndsWith("ViewModel"))

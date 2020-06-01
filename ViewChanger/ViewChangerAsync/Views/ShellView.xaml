@@ -22,7 +22,9 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <ContentControl x:Name="NavigationUserControl" cal:View.Model="{Binding NavigationUserControl, Mode=TwoWay}" cal:View.Context="NavigationView" Grid.Row="1" />
+            <ContentControl x:Name="Navigaton" cal:View.Model="{Binding NavigationUserControl}"  Grid.Row="1" />
+            <!-- This ContentControl works with the Constructor but not the EventTime
+            <ContentControl cal:View.Model="{Binding NavigationUserControl}" Grid.Row="1" />-->
         <ContentControl x:Name="ActiveItem" Grid.Row="2" />
     </Grid>
         </DockPanel>

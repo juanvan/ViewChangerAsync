@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ViewChangerAsync.ViewModels
 {
-   public class MainScreenViewModel : Screen
+   public class CenterContentViewModel : Screen
     {
     }
 }

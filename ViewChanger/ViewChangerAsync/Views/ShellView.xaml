@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ViewChangerAsync.Views"
         xmlns:cal="http://caliburnmicro.com"
         mc:Ignorable="d"
-        Title="ShellView" Height="450" Width="800">
+        Title="{Binding Title}" Height="250" Width="600">
    
         <DockPanel>
             <Menu DockPanel.Dock="Top" FontSize="18">
@@ -17,15 +17,16 @@
             </Menu>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
 
-            <ContentControl x:Name="Navigaton" cal:View.Model="{Binding NavigationUserControl}"  Grid.Row="1" />
-            <!-- This ContentControl works with the Constructor but not the EventTime
-            <ContentControl cal:View.Model="{Binding NavigationUserControl}" Grid.Row="1" />-->
-        <ContentControl x:Name="ActiveItem" Grid.Row="2" />
-    </Grid>
+            <ContentControl cal:View.Model="{Binding CenterContentControl}" Grid.Row="1" />
+            <ContentControl cal:View.Model="{Binding NavigationUserControl}" Grid.Row="2" />
+            <ContentControl x:Name="ActiveItem" Grid.Row="3" />
+        </Grid>
         </DockPanel>
 </Window>

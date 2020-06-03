@@ -5,8 +5,32 @@ using System.Threading.Tasks;
 
 namespace ViewChangerAsync.ViewModels
 {
-   public class ShellViewModel : Conductor<object>
+   public class ShellViewModel : Conductor<object>.Collection.AllActive
     {
+        private CenterContentViewModel _centerContentControl;
+
+        public CenterContentViewModel CenterContentControl
+        {
+            get { return _centerContentControl; }
+            set 
+            {
+                _centerContentControl = value;
+                NotifyOfPropertyChange(() => CenterContentControl); 
+            }
+        }
+
+        private string _title;
+
+        public string Title
+        {
+            get { return _title; }
+            set 
+            {
+                _title = value;
+                NotifyOfPropertyChange(() => Title);
+            }
+        }
+
         private NavigationViewModel _navigationUserControl;
 
         public NavigationViewModel NavigationUserControl
@@ -21,26 +45,22 @@ namespace ViewChangerAsync.ViewModels
 
         public ShellViewModel()
         {
-            //Navigation UserControl Loads
+            Title = "Start Screen";
             //NavigationUserControl = IoC.Get<NavigationViewModel>();
-            //ActivateItemAsync(NavigationUserControl, new CancellationToken());
-            //ActivateItemAsync(IoC.Get<MainScreenViewModel>(), new CancellationToken());
+            //CenterContentControl = IoC.Get<CenterContentViewModel>();
+            //Items.Add(NavigationUserControl);
+            //Items.Add(CenterContentControl);        
         }
 
         public async Task ChangeView()
         {
-            ////Navigation UserControl Does not Load into the ContentControl
-            var viewModel = IoC.Get<NavigationViewModel>();
-            var view = ViewLocator.LocateForModel(viewModel, null, null);
-            ViewModelBinder.Bind(viewModel, view, null);
-            var activator = viewModel as IActivate;
-            if(activator != null)
-            {
-                await activator.ActivateAsync();
-            }
-            
-            //await ActivateItemAsync(NavigationUserControl, new CancellationToken());
-            await ActivateItemAsync(IoC.Get<MainScreenViewModel>(), new CancellationToken());
+
+            Title = "After Click";
+            NavigationUserControl = IoC.Get<NavigationViewModel>();
+            CenterContentControl = IoC.Get<CenterContentViewModel>();
+            Items.Add(NavigationUserControl);
+            Items.Add(CenterContentControl);
+            await ActivateItemAsync(Items, new CancellationToken());
         }
     }
 }

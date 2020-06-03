@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ViewChangerAsync.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Background="Aqua">
         <TextBlock Text="MainScreenView"/>
     </Grid>
 </UserControl>

@@ -22,7 +22,9 @@ namespace ViewChangerAsync
             _container
                 .Singleton<IWindowManager, WindowManager>()
                 .Singleton<IEventAggregator, EventAggregator>();
-           
+            _container
+                 .PerRequest<NavigationViewModel>();
+
             GetType().Assembly.GetTypes()
                 .Where(type => type.IsClass)
                 .Where(type => type.Name.EndsWith("ViewModel"))

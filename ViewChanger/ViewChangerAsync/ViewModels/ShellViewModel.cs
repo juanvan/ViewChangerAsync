@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ViewChangerAsync.ViewModels
 {
-   public class ShellViewModel : Conductor<object>.Collection.AllActive
+   public class ShellViewModel : Conductor<object>.Collection.OneActive
     {
         private CenterContentViewModel _centerContentControl;
 
@@ -31,17 +31,17 @@ namespace ViewChangerAsync.ViewModels
             }
         }
 
-        private NavigationViewModel _navigationUserControl;
+        //private NavigationViewModel _navigationUserControl;
 
-        public NavigationViewModel NavigationUserControl
-        {
-            get { return _navigationUserControl; }
-            set 
-            { 
-                _navigationUserControl = value;
-                NotifyOfPropertyChange(() => NavigationUserControl);
-            }
-        }
+        //public NavigationViewModel NavigationUserControl
+        //{
+        //    get { return _navigationUserControl; }
+        //    set 
+        //    { 
+        //        _navigationUserControl = value;
+        //        NotifyOfPropertyChange(() => NavigationUserControl);
+        //    }
+        //}
 
         public ShellViewModel()
         {
@@ -49,18 +49,29 @@ namespace ViewChangerAsync.ViewModels
             //NavigationUserControl = IoC.Get<NavigationViewModel>();
             //CenterContentControl = IoC.Get<CenterContentViewModel>();
             //Items.Add(NavigationUserControl);
-            //Items.Add(CenterContentControl);        
+            //Items.Add(CenterContentControl);
+            ActivateItemAsync(IoC.Get<NavigationViewModel>(), new CancellationToken());
         }
 
         public async Task ChangeView()
         {
 
-            Title = "After Click";
-            NavigationUserControl = IoC.Get<NavigationViewModel>();
-            CenterContentControl = IoC.Get<CenterContentViewModel>();
-            Items.Add(NavigationUserControl);
-            Items.Add(CenterContentControl);
-            await ActivateItemAsync(Items, new CancellationToken());
+            //Title = "After Click";
+            //NavigationUserControl = IoC.Get<NavigationViewModel>();
+            //CenterContentControl = IoC.Get<CenterContentViewModel>();
+            //Items.Add(NavigationUserControl);
+            //Items.Add(CenterContentControl);
+            await ActivateItemAsync(IoC.Get<NavigationViewModel>(), new CancellationToken());
+        }
+
+        public async Task NavToChildConductor()
+        {
+            await ActivateItemAsync(IoC.Get<ChildConductorViewModel>(), new CancellationToken());
+        }
+
+        public async Task NavBackToMainControler()
+        {
+            await ActivateItemAsync(IoC.Get<NavigationViewModel>(), new CancellationToken());
         }
     }
 }

@@ -11,22 +11,23 @@
         <DockPanel>
             <Menu DockPanel.Dock="Top" FontSize="18">
                 <MenuItem Header="Views">
-                <MenuItem x:Name="ChangeView" Header=" ChangeView"/>
-                </MenuItem>
+                <MenuItem x:Name="NavToChildConductor" Header="Nav to Child Conductor"/>
+                <MenuItem x:Name="NavBackToMainControler" Header="Nav to Shell Conductor"/>
+            </MenuItem>
             
             </Menu>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <!--<RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>-->
             </Grid.RowDefinitions>
 
-            <ContentControl cal:View.Model="{Binding CenterContentControl}" Grid.Row="1" />
-            <ContentControl cal:View.Model="{Binding NavigationUserControl}" Grid.Row="2" />
-            <ContentControl x:Name="ActiveItem" Grid.Row="3" />
+            <!--<ContentControl cal:View.Model="{Binding CenterContentControl}" Grid.Row="1" />
+            <ContentControl cal:View.Model="{Binding NavigationUserControl}" Grid.Row="2" />-->
+            <ContentControl x:Name="ActiveItem" Grid.Row="1" />
         </Grid>
         </DockPanel>
 </Window>
